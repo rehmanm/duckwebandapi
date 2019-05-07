@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Duck";
+}
+
+<div class="row">
+    <h1>Duck Feeding Form</h1>
+</div>
+<form class="needs-validation" novalidate>
+    <div class="form-row">
+
+        <div class="form-group">
+            <label for="txtemail">Email</label>
+            <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+            @*<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
+            <div id="valtxtEmail" style="display:none;">
+                Please provide a valid Email.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="txtTime">Time</label>
+            <input type="time" class="form-control" id="txtTime" aria-describedby="timeHelp" placeholder="Enter Time">
+            <div id="valtxtTime" style="display:none;">
+                Please provide a valid Time.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="selDuckFood">Duck Food</label>
+            <select id="selDuckFood" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <label for="selFeedLocation">Feed Location</label>
+            <select id="selFeedLocation" class="form-control">
+                <option>Park</option>
+                <option>Inside</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtNumberofDucks">Number of Ducks</label>
+            <input type="number" class="form-control" id="txtNumberofDucks" aria-describedby="noofDucksHelp" placeholder="Number Of Ducks">
+            @*<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
+            <div id="valtxtNumberofDucks" style="display:none;">
+                Please provide a valid Number of Ducks.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="selFoodType">Food Type</label>
+            <select id="selFoodType" class="form-control">
+                <option>Corn</option>
+                <option>Seeds</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtAmountOfFood">Amount of Food Per Duck</label>
+            <input type="number" class="form-control" id="txtAmountOfFood" aria-describedby="txtAmountOfFoodHelp" placeholder="Number of Oz">
+            <div id="valtxtAmountOfFood" style="display:none;">
+                Please provide a valid Amount of Food Per Duck.
+            </div>
+            <small id="txtAmountOfFoodHelp" class="form-text text-muted">Food per duck in Oz</small>
+
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="chkSameSchedule">
+            <label class="form-check-label" for="chkSameSchedule">Same Schedule Every Day</label>
+        </div>
+        <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+
+
+    </div>
+</form>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/home")
+
+}
