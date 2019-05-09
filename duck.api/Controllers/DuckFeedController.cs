@@ -12,9 +12,11 @@ namespace duck.api.Controllers
     public class DuckFeedController : ApiController
     {
         // GET: api/DuckFeed
-        public IEnumerable<string> Get()
+        public IEnumerable<DuckFeeding> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            DuckFeedingModel dfm = new DuckFeedingModel();
+            return dfm.GetDuckFeedings();
         }
 
         // GET: api/DuckFeed/5
@@ -28,10 +30,12 @@ namespace duck.api.Controllers
         {
             DuckFeedingModel dfm = new DuckFeedingModel();
 
-            return Request.CreateResponse(HttpStatusCode.OK, new
-            {
-                Status = dfm.SaveDuckFeeding(df)
-            });
+            //return Request.CreateResponse(HttpStatusCode.OK, new
+            //{
+            //    Status = dfm.SaveDuckFeeding(df)
+            //});
+
+            return dfm.SaveDuckFeeding(df);
 
         }
 

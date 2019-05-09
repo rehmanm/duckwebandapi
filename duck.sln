@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "duck.model", "duck.model\du
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "duck.api", "duck.api\duck.api.csproj", "{6633A08B-2F75-460C-BEB1-89B731B016F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "duck.api.test", "duck.api.test\duck.api.test.csproj", "{211904D1-E668-4E50-BA9A-E584DAA5B038}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6633A08B-2F75-460C-BEB1-89B731B016F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6633A08B-2F75-460C-BEB1-89B731B016F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6633A08B-2F75-460C-BEB1-89B731B016F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{211904D1-E668-4E50-BA9A-E584DAA5B038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{211904D1-E668-4E50-BA9A-E584DAA5B038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{211904D1-E668-4E50-BA9A-E584DAA5B038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{211904D1-E668-4E50-BA9A-E584DAA5B038}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,19 +2,36 @@
 $(document).ready(function () {  
     var baseUrl = 'http://localhost:51667';
     var selDuckFood = $('#selDuckFood');  
- 
+
+    var duckFoodLoaded = false, feedLocationLoaded = false;
+    function hideLoader() {
+
+        if (duckFoodLoaded && feedLocationLoaded) {
+            $("#loader").hide();
+        }
+
+    }
+
+    function showLoader() {
+        $("#loader").show();
+    }
+     
     $.ajax({
         type: 'GET',
         url: baseUrl + '/api/duckfood',
         dataType: 'json',
+        beforeSend: function (xhr) {
+            showLoader();
+        },
         success: function (data) {
 
             selDuckFood.empty();
-            console.log(data);
             $.each(data, function (index, val) {
                 selDuckFood.append('<option value ="' + val.FoodID + '">' + val.FoodName + '</li>')
 
             });
+            duckFoodLoaded = true;
+            hideLoader();
         }
     });
 
@@ -23,6 +40,9 @@ $(document).ready(function () {
         type: 'GET',
         url: baseUrl + '/api/feedlocation',
         dataType: 'json',
+        beforeSend: function (xhr) {
+            showLoader();
+        },
         success: function (data) {
 
             selFeedLocation.empty();
@@ -31,6 +51,8 @@ $(document).ready(function () {
                 selFeedLocation.append('<option value ="' + val.FeedLocationID + '">' + val.FeedLocationName + '</li>')
 
             });
+            feedLocationLoaded = true;
+            hideLoader();
         }
     })
 
@@ -80,6 +102,9 @@ $(document).ready(function () {
         
 
     $("#btnSubmit").click(function (e) {
+
+        var responseMessage = $("#responseMessage");
+        responseMessage.hide();
         var emailInvalid = validateTxt("txtEmail") && validateEmail("txtEmail");
         var timeInvalid = validateTxt("txtTime");
         var numberOfDuckInvalid = validateTxt("txtNumberofDucks") && validatePositive("txtNumberofDucks");
@@ -107,17 +132,45 @@ $(document).ready(function () {
             "IsRecurring": $("#chkSameSchedule").prop('checked')
         };
 
-   
-        console.log(data);
- 
         $.ajax({
             type: "POST",
             url: baseUrl + '/api/duckfeed',
             data: data,
-            success: function (status) {
-                console.log(status);
-            } 
-        });
+            beforeSend: function (xhr) {
+                showLoader();
+            },
+        }).done(function (status, response) {
+
+                responseMessage.removeClass("alert-success");
+                responseMessage.removeClass("alert-danger");
+
+
+                if (status === 1) {
+                    responseMessage.text("Record Inserted Successfully");
+                    responseMessage.addClass("alert-success");
+
+                } else if (status === 2) {
+                    responseMessage.text("Record Inserted Successfully and Recurring Schedule Also Created");
+                    responseMessage.addClass("alert-success");
+
+                } else {
+                    responseMessage.text("There is some issue while inserting record");
+                    responseMessage.addClass("alert-danger");
+
+                }
+
+            responseMessage.show();
+            hideLoader();
+            }
+            ).fail(function () {
+
+                responseMessage.text("There is some issue while inserting record");
+                responseMessage.addClass("alert-danger");
+
+                responseMessage.show();
+                hideLoader();
+            });
+
     });
 
 
